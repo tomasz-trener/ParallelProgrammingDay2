@@ -23,7 +23,8 @@
             <Button x:Name="btnGetTemperature2" Click="btnGetTemperature2_Click"  Content="Async1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
             <Button x:Name="btnGetTemperature3" Click="btnGetTemperature3_Click"  Content="Async2" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
             <Button x:Name="btnGetTemperature4" Click="btnGetTemperature4_Click"  Content="Async3" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
-
+            <Button x:Name="btnGetTemperature5" Click="btnGetTemperature5_Click"  Content="Async4" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
+          
         </StackPanel>
            
         <StackPanel Grid.Column="2">
