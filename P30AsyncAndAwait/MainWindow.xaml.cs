@@ -107,5 +107,57 @@ namespace P30AsyncAndAwait
             }
 
         }
+
+        // secnariusz 1: jedno miasto po drugim z uzyciem await 
+        private async void btnGetTemperature3_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+            WeatherForecastService service = new WeatherForecastService();
+            string[] cities = txtCity.Text.Split(Environment.NewLine);
+            foreach (var city in cities)
+            {
+                lvLogger.Items.Add($"Currently Processing {city}");
+
+                var t = await Task.Run<int>(() => 
+                {
+                    int temp = service.GetTemperature(city);
+                    return temp;
+                });
+
+                tbTemperature.Text += $"Temperature in {city} is currently {t} C" + Environment.NewLine;
+            }
+        }
+
+        // secnariusz 1: czekamy na wszystkie zadania 
+        private async void btnGetTemperature4_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+            WeatherForecastService service = new WeatherForecastService();
+            string[] cities = txtCity.Text.Split(Environment.NewLine);
+            List<Task<int>> tasks = new List<Task<int>>();
+            foreach (var city in cities)
+            {
+                var t = Task.Run<int>(() =>
+                {
+                    int temp = service.GetTemperature(city);
+                    return temp;
+                });
+                tasks.Add(t);
+            }
+
+            lvLogger.Items.Add($"Stared processing all cities");
+            await Task.WhenAll(tasks);
+            lvLogger.Items.Add($"Finished processing all cities");
+
+            foreach (var item in tasks)
+            {
+                var t = item.Result;
+                tbTemperature.Text += $"Temperature in ... is currently {t} C" + Environment.NewLine;
+            }
+          
+          
+        }
     }
 }
