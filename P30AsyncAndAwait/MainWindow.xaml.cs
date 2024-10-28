@@ -255,7 +255,7 @@ namespace P30AsyncAndAwait
             {
                 lvLogger.Items.Add($"Currently Processing {city}");
 
-                int temp = await service.GetTemperatureAsync(city);
+                int temp = await service.GetTemperatureAsync3(city);
                 tbTemperature.Text += $"Temperature in {city} is currently {temp} C" + Environment.NewLine;
                 pbProgress.Value++;
             }

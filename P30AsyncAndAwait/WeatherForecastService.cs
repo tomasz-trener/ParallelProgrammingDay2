@@ -67,5 +67,25 @@ namespace P30AsyncAndAwait
                 }
             });
         }
+
+
+        public async Task<int> GetTemperatureAsync3(string city)
+        {
+            using (WebClient wc = new WebClient())
+            {
+                string data = await wc.DownloadStringTaskAsync(url + " " + city);
+                string result = await Task.Run(() =>
+                {
+                    Regex rx = new Regex(regexTemplate, RegexOptions.IgnoreCase);
+                    Match match = rx.Match(data);
+                    return match.Groups[1].Value;
+                });
+
+                return int.Parse(result);
+
+            }
+        }
+          
+        }
     }
-}
+ 
