@@ -5,15 +5,31 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:P30AsyncAndAwait"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="500">
     <Grid>
-        <Button x:Name="btnCalculate" Click="btnCalculate_Click" Content="Button" HorizontalAlignment="Left" Margin="57,65,0,0" VerticalAlignment="Top"/>
-        <Label x:Name="lblResult" Content="Label" HorizontalAlignment="Left" Margin="57,117,0,0" VerticalAlignment="Top"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="130,65,0,0" VerticalAlignment="Top" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="197,65,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
-        <TextBox x:Name="txtCity" AcceptsReturn="True" HorizontalAlignment="Left" Margin="509,33,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" Height="82"/>
-        <TextBlock x:Name="tbTemperature"  Margin="520,130,94,217"></TextBlock>
-        <Button x:Name="btnGetTemperature1" Click="btnGetTemperature1_Click"  Content="Button" HorizontalAlignment="Left" Margin="289,55,0,0" VerticalAlignment="Top" Width="111"/>
-        <Button x:Name="btnGetTemperature1_Copy" Click="btnGetTemperature1_Click"  Content="Button" HorizontalAlignment="Left" Margin="289,95,0,0" VerticalAlignment="Top" Width="111"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0">
+            <Button x:Name="btnCalculate" Click="btnCalculate_Click" Content="Button" HorizontalAlignment="Left"  VerticalAlignment="Top"/>
+            <Label x:Name="lblResult" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Content="Button" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click"/>
+            <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1">
+            <Button x:Name="btnGetTemperature1" Click="btnGetTemperature1_Click"  Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="111"/>
+            <Button x:Name="btnGetTemperature2" Click="btnGetTemperature2_Click"  Content="Async1" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
+
+        </StackPanel>
+           
+        <StackPanel Grid.Column="2">
+            <TextBox x:Name="txtCity" AcceptsReturn="True" HorizontalAlignment="Left"  TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="208" Height="82"/>
+            <TextBlock x:Name="tbTemperature"  ></TextBlock>
+            <ListView x:Name="lvLogger"></ListView>
+        </StackPanel>
+       
+
     </Grid>
 </Window>
