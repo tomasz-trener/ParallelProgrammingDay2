@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P27Cancellation", "P27Cance
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P28CustomAggregations", "P28CustomAggregations\P28CustomAggregations.csproj", "{A7AEE560-6086-4A1B-9380-7D301ABCA983}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P29MemoryBarrier", "P29MemoryBarrier\P29MemoryBarrier.csproj", "{0427D233-1769-4BA3-94CA-08C177551EE8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "P30AsyncAndAwait", "P30AsyncAndAwait\P30AsyncAndAwait.csproj", "{198E886F-78CD-4B0D-90F4-97DE24935914}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{A7AEE560-6086-4A1B-9380-7D301ABCA983}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7AEE560-6086-4A1B-9380-7D301ABCA983}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7AEE560-6086-4A1B-9380-7D301ABCA983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0427D233-1769-4BA3-94CA-08C177551EE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0427D233-1769-4BA3-94CA-08C177551EE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0427D233-1769-4BA3-94CA-08C177551EE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0427D233-1769-4BA3-94CA-08C177551EE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{198E886F-78CD-4B0D-90F4-97DE24935914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{198E886F-78CD-4B0D-90F4-97DE24935914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{198E886F-78CD-4B0D-90F4-97DE24935914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{198E886F-78CD-4B0D-90F4-97DE24935914}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
