@@ -17,6 +17,13 @@
             <Label x:Name="lblResult" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Button Content="Button" HorizontalAlignment="Left"  VerticalAlignment="Top" Click="Button_Click"/>
             <Button Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click_1"/>
+
+            <Button Content="ConfigureAwait" x:Name="btnConfigureAwait" Click="btnConfigureAwait_Click"></Button>
+            <Button Content="ConfigureAwaitFalse" x:Name="btnConfigureAwaitDalse" Click="btnConfigureAwaitDalse_Click"></Button>
+
+            <Label x:Name="lblMonitor" Content="Label" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Content="RunTasks" x:Name="btnRunTasks" Click="btnRunTasks_Click"></Button>
+
         </StackPanel>
         <StackPanel Grid.Column="1">
             <Button x:Name="btnGetTemperature1" Click="btnGetTemperature1_Click"  Content="Button" HorizontalAlignment="Left" VerticalAlignment="Top" Width="111"/>

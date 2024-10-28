@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.IO;
+using System.Net;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -17,9 +18,39 @@ namespace P30AsyncAndAwait
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private Thread _backgroudThread;
+
+        private void StartLongRunningTask()
+        {
+            _backgroudThread = new Thread(MonitorMemoryUsage);
+            _backgroudThread.IsBackground = true;
+            _backgroudThread.Start();
+        }
+
+        private void MonitorMemoryUsage(object? obj)
+        {
+            while (true)
+            {
+                int maxWorkerThreads, maxCompletionPortThreads;
+                int avaibleWorkerThreads, avaibleCompletionPortThreads;
+
+                ThreadPool.GetMaxThreads(out maxWorkerThreads, out maxCompletionPortThreads);
+                ThreadPool.GetAvailableThreads(out avaibleWorkerThreads, out avaibleCompletionPortThreads);
+
+                Dispatcher.Invoke(() =>
+                {
+                    lblMonitor.Content = $"Max worker threads: {maxWorkerThreads}, Max completion port threads: {maxCompletionPortThreads}";
+                    lblMonitor.Content += $"\nAvailable worker threads: {avaibleWorkerThreads}, Available completion port threads: {avaibleCompletionPortThreads}";
+                });
+                Thread.Sleep(5000);
+            }
+        }
+
         public MainWindow()
         {
             InitializeComponent();
+            StartLongRunningTask();
         }
 
         //public int CalculateValue()
@@ -259,6 +290,54 @@ namespace P30AsyncAndAwait
                 tbTemperature.Text += $"Temperature in {city} is currently {temp} C" + Environment.NewLine;
                 pbProgress.Value++;
             }
+        }
+
+        private async void btnConfigureAwait_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> data = new List<string>() { "some data", "other data", "more info" };
+
+            var processedData = await Task.Run(() =>
+            {
+                return data.Where(x=>x.Contains("data")).Select(x=>x.ToUpper()).ToList();
+            }).ConfigureAwait(true);
+
+            lblResult.Content = processedData.Count;
+        }
+
+        private async void btnConfigureAwaitDalse_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> data = new List<string>() { "some data", "other data", "more info" };
+
+            var processedData = await Task.Run(() =>
+            {
+                return data.Where(x => x.Contains("data")).Select(x => x.ToUpper()).ToList();
+            }).ConfigureAwait(false);
+
+            await SaveToFileAsync(processedData).ConfigureAwait(false);
+        }
+
+        public async Task SaveToFileAsync(List<string> data)
+        {
+            await Task.Run(() =>
+            {
+                File.WriteAllLines("data.txt", data);
+            });
+        }
+
+        private async void btnRunTasks_Click(object sender, RoutedEventArgs e)
+        {
+            int n = 10;
+
+            List<Task> tasks = new List<Task>();
+            for (int i = 0; i < n; i++)
+            {
+                tasks.Add(Task.Run(() =>
+                {
+                    Thread.Sleep(3000);
+                }));
+            }
+
+            await Task.WhenAll(tasks);
         }
     }
 }
