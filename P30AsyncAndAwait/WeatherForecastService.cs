@@ -47,5 +47,25 @@ namespace P30AsyncAndAwait
                 throw new Exception("Error while parsing data");    
             }
         }
+
+        public async Task<int> GetTemperatureAsync2(string city)
+        {
+            return await Task.Run(() =>
+            {
+                WebClient wc = new WebClient();
+                string data = wc.DownloadString(url + " " + city);
+                try
+                {
+                    Regex rx = new Regex(regexTemplate, RegexOptions.IgnoreCase);
+                    Match match = rx.Match(data);
+                    string result = match.Groups[1].Value;
+                    return int.Parse(result);
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Error while parsing data");
+                }
+            });
+        }
     }
 }

@@ -241,5 +241,24 @@ namespace P30AsyncAndAwait
                 pbProgress.Value++;
             }
         }
+
+        private async void btnGetTemperature8_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+            WeatherForecastService service = new WeatherForecastService();
+            string[] cities = txtCity.Text.Split(Environment.NewLine);
+            pbProgress.Maximum = cities.Length;
+            pbProgress.Value = 0;
+
+            foreach (var city in cities)
+            {
+                lvLogger.Items.Add($"Currently Processing {city}");
+
+                int temp = await service.GetTemperatureAsync(city);
+                tbTemperature.Text += $"Temperature in {city} is currently {temp} C" + Environment.NewLine;
+                pbProgress.Value++;
+            }
+        }
     }
 }

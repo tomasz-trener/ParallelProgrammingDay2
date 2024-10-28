@@ -26,6 +26,7 @@
             <Button x:Name="btnGetTemperature5" Click="btnGetTemperature5_Click"  Content="Async4" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
             <Button x:Name="btnGetTemperature6" Click="btnGetTemperature6_Click"  Content="Async5" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
             <Button x:Name="btnGetTemperature7" Click="btnGetTemperature7_Click"  Content="Async6" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
+            <Button x:Name="btnGetTemperature8" Click="btnGetTemperature8_Click"  Content="Async7" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="111"/>
 
             <ProgressBar x:Name="pbProgress"></ProgressBar>
         </StackPanel>
