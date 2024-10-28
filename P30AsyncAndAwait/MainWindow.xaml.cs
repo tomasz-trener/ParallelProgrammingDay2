@@ -189,5 +189,33 @@ namespace P30AsyncAndAwait
             }
 
         }
+
+        // scenariusz : nie czekamy na wszystkie zadania ale wypisujemy wnik od razu 
+        private void btnGetTemperature6_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+            WeatherForecastService service = new WeatherForecastService();
+            string[] cities = txtCity.Text.Split(Environment.NewLine);
+
+            foreach (var city in cities)
+            {
+                var t = Task.Run(() =>
+                {
+                    int temp = service.GetTemperature(city);
+                    return (temp, city);
+                });
+
+                lvLogger.Items.Add("Started processing " + city);
+
+                t.GetAwaiter().OnCompleted(() =>
+                {
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        tbTemperature.Text += $"Temperature in {t.Result.city} is currently {t.Result.temp} C" + Environment.NewLine;
+                    });
+                });
+            }
+        }
     }
 }
